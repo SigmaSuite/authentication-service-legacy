@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  php-swoole-server:
+  authorization_service:
     build: .
     env_file:
       - ./.env
@@ -10,7 +10,7 @@ services:
     volumes:
       - ./:/app
     ports:
-      - "80:9501"
+      - "7005:9501"
 
   db:
     image: postgres:13-alpine
@@ -22,3 +22,8 @@ services:
       - ./var/docker/db/postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+networks:
+  default:
+    external:
+      name: external-example
