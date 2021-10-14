@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM phpswoole/swoole:4.8-php8.0
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
@@ -10,3 +10,5 @@ RUN apt-get update && \
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 RUN docker-php-ext-install pdo pdo_pgsql
+
+ENTRYPOINT ["bin/console", "swoole:server:run"]
