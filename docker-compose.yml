@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  php-fpm:
+    build: .
+    env_file:
+      - ./.env
+    environment:
+      XDEBUG_CONFIG: client_host=${REMOTE_HOST}
+      PHP_IDE_CONFIG: serverName=${APPLICATION_NAME}
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:7005"
+
+  db:
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpass
+      POSTGRES_DB: pgdb
+    volumes:
+      - ./var/docker/db/postgres:/var/lib/postgresql/data
+
+networks:
+  default:
+    driver: bridge

@@ -1,0 +1,37 @@
+# IDE files
+
+.idea
+.vscode
+
+# Environment files
+
+/.env.local
+/.env.local.php
+/.env.*.local
+
+# GIT
+
+.git
+.gitignore
+
+# Docker & Infrastructure
+
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+Jenkinsfile
+/infrastructure/jenkins
+/infrastructure/terraform
+
+swagger.json
+
+# Var and caches
+
+/var
+
+# Other 
+
+/*.md
+Makefile
+
