@@ -29,6 +29,7 @@ swagger.json
 # Var and caches
 
 /var
+/vendor
 
 # Other 
 

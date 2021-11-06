@@ -7,8 +7,6 @@ services:
       - ./.env
     depends_on:
       - db
-    volumes:
-      - ./:/app
     ports:
       - "7005:9501"
 

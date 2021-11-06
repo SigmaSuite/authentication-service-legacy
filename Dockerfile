@@ -5,10 +5,14 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 WORKDIR /app
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y git zip unzip libzip4 libpq-dev
+        apt-get upgrade -y && \
+        apt-get install -y git zip unzip libzip4 libpq-dev
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 RUN docker-php-ext-install pdo pdo_pgsql
+
+COPY . ./
+
+RUN composer install
 
 ENTRYPOINT ["bin/console", "swoole:server:run"]
